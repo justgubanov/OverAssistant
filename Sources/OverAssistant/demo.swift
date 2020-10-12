@@ -31,13 +31,13 @@ struct Demo {
             HeroCollection[.DVa]
         ]
         
-        
-        
         let options = Selector.rankedHeroes
-        let sortedByScore = options.sorted(by: { $0.value.score > $1.value.score })
+        let sortedByScore = options.sorted { firstPick, secondPick in
+            firstPick.value.value > secondPick.value.value
+        }
         let topFive = sortedByScore.prefix(5)
         for (hero, score) in topFive {
-            print(hero.name, score.score, score.log["DPS"] ?? 0)
+            print(hero.name, score.value, score.sequence["DPS"] ?? 0)
         }
         
         print(HeroCollection.SelectBy(role: .Support).map {$0.name} )

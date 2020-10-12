@@ -43,12 +43,11 @@ class Selector: NSObject {
         return required
     }
     
-    
-    static var rankedHeroes: [Hero: Score] {
+    static var rankedHeroes: [Hero: PickScore] {
         let required = AdjustedRequirements()
         let player = Player(profile: playerProfile)
         
-        var heroesWeight = [Hero: Score]()
+        var heroesWeight = [Hero: PickScore]()
         
         let avaliableHeroes = HeroCollection.list.map { $0.value }
         
@@ -58,58 +57,58 @@ class Selector: NSObject {
                 continue
             }
             
-            var points = Score()
+            var score = PickScore()
             
             if required.teamDPS > 0 {
                 let rewardedDPS = min(player.DamagePerSecond(on: hero), required.teamDPS)
-                points.Increase(with: rewardedDPS, for: .DPS)
+                score.increase(with: rewardedDPS, for: .DPS)
             }
             
             if required.teamHPS > 0 {
                 let rewardedHPS = min(player.HealingPerSecond(on: hero), required.teamHPS)
-                points.Increase(with: rewardedHPS, for: .HPS)
+                score.increase(with: rewardedHPS, for: .HPS)
             }
             
             if required.teamHealth > 0 {
                 let rewardedHealth = min(hero.stats.fullHealth, required.teamHealth)
-                points.Increase(with: Double(rewardedHealth), for: .Health)
+                score.increase(with: Double(rewardedHealth), for: .Health)
             }
             
-            points.Increase(with: player.TimeOnFirePersentage(on: hero), for: .TimeOnFire)
+            score.increase(with: player.TimeOnFirePersentage(on: hero), for: .TimeOnFire)
             
             if player.FavoriteHeroes(includes: hero) {
-                points.Increase(for: .Favorite)
+                score.increase(for: .Favourite)
             }
             
             if required.playstyleList.contains(hero.playstyle) {
-                points.Increase(for: .PlayStyle)
+                score.increase(for: .PlayStyle)
             }
             
             if required.rangesList.contains( where: { hero.HasRange(of: $0) } ) {
-                points.Increase(for: .Range)
+                score.increase(for: .Range)
             }
             
             if required.ultimatesList.contains( where: { hero.HasAbility(of: .Ultimate, with: $0) } ) {
-                points.Increase(for: .Ultimate)
+                score.increase(for: .Ultimate)
             }
             
             for enemy in enemies {
                 if Hero.Counter(for: enemy, is: hero) {
-                    points.Increase(for: .Counter)
+                    score.increase(for: .Counter)
                 }
                 
                 if !Hero.Counter(for: hero, is: enemy) {
-                    points.Increase(for: .NotCounter)
+                    score.increase(for: .NotCounter)
                 }
             }
             
             for ally in allies {
                 if Hero.Synergy(between: hero, and: ally) {
-                    points.Increase(for: .Synergy)
+                    score.increase(for: .Synergy)
                 }
             }
             
-            heroesWeight.updateValue(points, forKey: hero)
+            heroesWeight.updateValue(score, forKey: hero)
         }
         
         return heroesWeight
