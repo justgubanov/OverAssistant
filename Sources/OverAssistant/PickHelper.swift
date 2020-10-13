@@ -13,17 +13,15 @@ struct PickHelper {
     var typeOfQueue: Hero.Role?
     
     var conditions = GameConditions(map: nil, offenseSide: .symmetrical)
-    var playerProfile: Profile?
+    var player: Player = .average
     
-    lazy var player: Player = {
-        if let playerProfile = playerProfile {
-            return Player(profile: playerProfile)
-        } else {
-            return Player.average
-        }
-    }()
+    init() {}
     
-    mutating func getScoredHeroes() -> [Hero: PickScore] {
+    init(playerProfile: Profile) {
+        self.player = Player(profile: playerProfile)
+    }
+    
+    func getScoredHeroes() -> [Hero: PickScore] {
         let requirements = makeSessionRequirements()
         let availableHeroes = HeroList.list.map { $0.value }
         
@@ -54,7 +52,7 @@ struct PickHelper {
             
             score.increase(with: player.getTimeOnFirePercentage(playing: hero), for: .timeOnFire)
             
-            if player.hasFavouriteHero(of: hero) {
+            if player.prefers(hero) {
                 score.increase(for: .beingFavourite)
             }
             
@@ -93,7 +91,7 @@ struct PickHelper {
         return heroesScores
     }
     
-    private mutating func makeSessionRequirements() -> SessionRequirements {
+    private func makeSessionRequirements() -> SessionRequirements {
         var requirements = SessionRequirements(for: conditions)
         for hero in allies {
             requirements.teamHealth -= hero.stats.fullHealth

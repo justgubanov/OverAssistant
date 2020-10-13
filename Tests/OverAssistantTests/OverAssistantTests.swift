@@ -11,12 +11,14 @@ final class OverAssistantTests: XCTestCase {
     }
     
     func testSelector() {
-        let xogsnim = Profile(for: "Xogsnim", on: .psn)
+        ProfileProvider().loadProfile(nickname: "Xogsnim", platform: .psn)
         sleep(10)
         
-        var helper = PickHelper()
-        
-        helper.playerProfile = xogsnim
+        guard let xogsnimProfile = ProfileStorage["Xogsnim"] else {
+            XCTFail()
+            return
+        }
+        var helper = PickHelper(playerProfile: xogsnimProfile)
         helper.conditions = GameConditions(map: nil, offenseSide: .symmetrical)
         helper.typeOfQueue = .support
         
@@ -26,8 +28,8 @@ final class OverAssistantTests: XCTestCase {
                           HeroList[.junkrat]]
         
         helper.allies = [HeroList[.soldier76],
-                          HeroList[.roadhog],
-                          HeroList[.dva]]
+                         HeroList[.roadhog],
+                         HeroList[.dva]]
         
         let pickOptions = helper.getScoredHeroes()
         let sortedByScore = pickOptions.sorted { firstPick, secondPick in
@@ -40,7 +42,7 @@ final class OverAssistantTests: XCTestCase {
         
         print(HeroList.getHeroes(role: .support).map {$0.name} )
     }
-
+    
     static var allTests = [
         ("testExample", testExample),
     ]
