@@ -6,31 +6,39 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
-enum RangeType: String {
-    case Close
-    case Medium
-    case Long
-}
-
-class Weapon: NSObject {
-    var name: String
+struct Weapon {
     
-    var text: String = ""
-    var imageId: String = ""
+    enum Range: String {
+        
+        case close
+        case medium
+        case long
+    }
+    
+    var name: String
     
     var primaryDamage: Int?
     var secondaryDamage: Int?
-    var primaryRange: RangeType?
-    var secondaryRange: RangeType?
-    var effectiveRange: [RangeType]
+    
+    var primaryRange: Range?
+    var secondaryRange: Range?
+    var effectiveRange: [Range]
     
     var magazineSize: Int = 0
     var reloadTime: Int = 0
     var fireRate: Int = 0
     
-    init(name: String, primaryDamage: Int = 0, secondaryDamage: Int = 0, magazineSize: Int = 1, reloadTime: Int = 0, fireRate: Int = 1, range: RangeType..., primaryRange: RangeType? = nil, secondaryRange: RangeType? = nil ) {
+    init(name: String,
+         primaryDamage: Int = 0,
+         secondaryDamage: Int = 0,
+         magazineSize: Int = 1,
+         reloadTime: Int = 0,
+         fireRate: Int = 1,
+         range: Range...,
+         primaryRange: Range? = nil,
+         secondaryRange: Range? = nil ) {
         
         self.name = name
         

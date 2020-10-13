@@ -6,40 +6,30 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-import Foundation
-
-enum AbilityType {
-    case Ultimate
-    case Passive
-    case Active
-}
-
-enum AbilityTag {
-    //for ultimate abilityes
-    case Offensive
-    case Defensive
-    case Control
-    case Special
+struct Ability {
     
-    //for active and passive abilities
-    case Pushing
-}
-
-
-class Ability: NSObject {
-    var name: String
-    var type: AbilityType
-    var tags: [AbilityTag]
-    
-    var text: String = ""
-    var imageId: String = ""
-    
-    
-    init(name: String, type: AbilityType = .Active, tags: AbilityTag...) {
-        self.name = name
-
-        self.type = type
-        self.tags = tags
+    enum Kind: Int {
+        
+        case ultimate
+        case passive
+        case active
     }
-}
 
+    struct TagSet: OptionSet {
+        
+        let rawValue: Int
+        
+        //for ultimate abilityes
+        static let offensive = Self(rawValue: 1 << 0)
+        static let defensive = Self(rawValue: 1 << 1)
+        static let control = Self(rawValue: 1 << 2)
+        static let special = Self(rawValue: 1 << 3)
+        
+        //for active and passive abilities
+        static let pushing = Self(rawValue: 1 << 4)
+    }
+    
+    var name: String
+    var kind: Kind
+    var tags: TagSet
+}

@@ -6,15 +6,13 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-import Cocoa
-
-
 struct HealthStats {
+    
     var shield = 0
     var health = 0
-    var armor = 0
+    var armour = 0
     
     var fullHealth: Int {
-        return shield + health + armor
+        return shield + health + armour
     }
 }

@@ -6,8 +6,6 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-import Cocoa
-
 /**
  Represented by N x N mairix, that shows synergy relationship beetwen each hero
  
@@ -91,29 +89,29 @@ var counterMatrix: [[Int]] = [
     [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0]
 ]
 
-enum Playstyle: String {
-    case Flanker
-    case Assault
-    case Choker
-    case Healer
-    case DamageAbsorber
-    case Sniper
-}
-
-enum Role: String {
-    case Tank
-    case Damage
-    case Support
-}
-
-class Hero: NSObject {
+class Hero {
+    
+    enum Playstyle: String {
+        
+        case flanker
+        case assault
+        case choker
+        case healer
+        case damageAbsorber
+        case sniper
+    }
+    
+    enum Role: String {
+        
+        case tank
+        case damage
+        case support
+    }
+    
     var name: String
     var number: Int
     var role: Role
     var stats: HealthStats
-
-    var text: String = ""
-    var imageId: String = ""
     
     var playstyle: Playstyle
     var abilityList: [Ability]
@@ -130,40 +128,53 @@ class Hero: NSObject {
         }
     }
 
-
-    init (name: String, number: Int, abilities: [Ability], weapons: [Weapon], role: Role, playstyle: Playstyle, health: Int, shield: Int = 0, armor: Int = 0) {
+    init (name: String, number: Int, abilities: [Ability], weapons: [Weapon], role: Role, playstyle: Playstyle, health: Int, shield: Int = 0, armour: Int = 0) {
         self.name = name
         self.number = number
         self.role = role
-        self.stats = HealthStats(shield: shield, health: health, armor: armor)
+        self.stats = HealthStats(shield: shield, health: health, armour: armour)
         
         self.playstyle = playstyle
         self.abilityList = abilities
         self.weaponList = weapons
     }
     
-    func HasAbility(of type: AbilityType, with tags: AbilityTag...) -> Bool {
-        let selectedAbilities = abilityList.filter { $0.type == type }
-        let properties = selectedAbilities.compactMap { $0.tags }
-        return properties.contains(tags)
+    func getUltimateAbilityTags() -> Ability.TagSet {
+        let selectedAbilities = abilityList.filter { ability in
+            ability.kind == .ultimate
+        }
+        return selectedAbilities.reduce([]) { tags, ability in
+            tags.union(ability.tags)
+        }
     }
 
-    func HasRange(of type: RangeType) -> Bool {
+    func isEffective(at range: Weapon.Range) -> Bool {
         let ranges = weaponList.flatMap { $0.effectiveRange }
-        return ranges.contains(type)
+        return ranges.contains(range)
     }
 
-    static func Synergy(between first: Hero, and second: Hero) -> Bool {
-        let firstIndex = first.number - 1
-        let secondIndex = second.number - 1
+    func synergises(with otherHero: Hero) -> Bool {
+        let firstIndex = self.number - 1
+        let secondIndex = otherHero.number - 1
 
         return synergyMatrix[firstIndex][secondIndex] >= 20
     }
 
-    static func Counter(for first: Hero, is second: Hero) -> Bool {
-        let firstIndex = first.number - 1
-        let secondIndex = second.number - 1
+    func counters(_ otherHero: Hero) -> Bool {
+        let firstIndex = self.number - 1
+        let secondIndex = otherHero.number - 1
         
         return counterMatrix[firstIndex][secondIndex] != 0
+    }
+}
+
+extension Hero: Hashable {
+    
+    static func == (lhs: Hero, rhs: Hero) -> Bool {
+        lhs.name == rhs.name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
     }
 }

@@ -6,50 +6,48 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-import Cocoa
-
 enum ScoreFactor: String {
     
-    case Health
-    case DPS
-    case HPS
-    case TimeOnFire
-    case Favourite
-    case Ultimate
-    case Range
-    case PlayStyle
-    case Counter
-    case NotCounter
-    case Synergy
-    case Ability
+    case healthProvider
+    case dps
+    case hps
+    case timeOnFire
+    case beingFavourite
+    case havingSuitableAbility
+    case havingSuitableUltimate
+    case havingSuitableRange
+    case playStyle
+    case countering
+    case notBeingCountered
+    case teamSynergy
     
     var value: Double {
         switch self {
-        case .DPS:
+        case .dps:
             return 0.001342
-        case .HPS:
+        case .hps:
             return 0.007246
-        case .TimeOnFire:
+        case .timeOnFire:
             return 0.011594
-        case .Favourite:
+        case .beingFavourite:
             return 0.043478
         
-        case .Health:
+        case .healthProvider:
             return 0.001318
-        case .Ultimate:
+        case .havingSuitableUltimate:
             return 0.057971
-        case .Range:
+        case .havingSuitableRange:
             return 0.072464
-        case .PlayStyle:
+        case .playStyle:
             return 0.072464
-        case .Ability:
+        case .havingSuitableAbility:
             return 0.028986
         
-        case .Counter:
+        case .countering:
             return 0.019324
-        case .NotCounter:
+        case .notBeingCountered:
             return 0.014493
-        case .Synergy:
+        case .teamSynergy:
             return 0.036232
         }
     }
@@ -64,11 +62,11 @@ struct PickScore {
         }
     }
     
-    private(set) var sequence: [String: Double] = [:]
+    private(set) var sequence: [ScoreFactor: Double] = [:]
     
     mutating func increase(with base: Double = 1, for factor: ScoreFactor) {
         let amount = base * factor.value
-        let currentValue = sequence[factor.rawValue] ?? 0
-        sequence.updateValue(currentValue + amount, forKey: factor.rawValue)
+        let currentValue = sequence[factor] ?? 0
+        sequence.updateValue(currentValue + amount, forKey: factor)
     }
 }

@@ -6,21 +6,20 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-import Cocoa
-
-class Player: NSObject {
-    private var profile: Profile?
+class Player {
     
-    var nickname: String {
-        return profile?.playerName ?? ""
+    static var average: Player {
+        return AveragePlayer()
     }
     
-    var platform: String {
-        return profile?.platform.string ?? ""
+    private let profile: Profile
+    
+    var nickname: String? {
+        return profile.playerName
     }
     
     var rank: Int {
-        if let record = profileList[profile!] {
+        if let record = Profile.list[profile] {
             return record.competitiveRank
         } else {
             return 0
@@ -28,62 +27,53 @@ class Player: NSObject {
     }
     
     var level: Int {
-        if let record = profileList[profile!] {
+        if let record = Profile.list[profile] {
             return record.level
         } else {
             return 0
         }
     }
     
-    
-    init (profile: Profile? = nil) {
+    init(profile: Profile) {
         self.profile = profile
     }
     
-    
-    func DamagePerSecond(on hero: Hero) -> Double {
-        if profile != nil,
-            let record = profileList[profile!],
-            let stats = record.heroStats[hero.name] {
-            return stats.damageDone / stats.secondsPlayed
-        } else {
-            return AverageMeasurment.DPS(on: hero)
+    func getDPS(on hero: Hero) -> Double {
+        guard let record = Profile.list[profile],
+              let stats = record.heroStats[hero.name] else {
+            return Player.average.getDPS(on: hero)
         }
+        return stats.damageDone / stats.secondsPlayed
     }
     
-    func HealingPerSecond(on hero: Hero) -> Double {
-        if profile != nil,
-            let record = profileList[profile!],
-            let stats = record.heroStats[hero.name] {
-            return stats.healingDone / stats.secondsPlayed
-        } else {
-            return AverageMeasurment.HPS(on: hero)
+    func getHPS(on hero: Hero) -> Double {
+        guard let record = Profile.list[profile],
+              let stats = record.heroStats[hero.name] else {
+            return Player.average.getHPS(on: hero)
         }
+        return stats.healingDone / stats.secondsPlayed
     }
     
-    func FavoriteHeroes(includes hero: Hero) -> Bool {
-        if profile != nil,
-            let record = profileList[profile!],
-            let secondsOnHero = record.heroStats[hero.name]?.secondsPlayed {
-            
-            let maxSeconds = record.heroStats.values.reduce(0) {
-                ($1.secondsPlayed > $0) ? $1.secondsPlayed : $0
-            }
-            
-            return secondsOnHero > maxSeconds / 2
-        } else {
+    func hasFavouriteHero(of hero: Hero) -> Bool {
+        guard let record = Profile.list[profile],
+              let stats = record.heroStats[hero.name] else {
             return false
         }
+        let secondsOnHero = stats.secondsPlayed
+        
+        let maxSeconds = record.heroStats.values.reduce(0) {
+            ($1.secondsPlayed > $0) ? $1.secondsPlayed : $0
+        }
+        
+        return secondsOnHero > maxSeconds / 2
     }
     
-    func TimeOnFirePersentage(on hero: Hero) -> Double {
-        if profile != nil,
-            let record = profileList[profile!],
-            let stats = record.heroStats[hero.name] {
-            return stats.secondsOnFire * 100 / stats.secondsPlayed
-        } else {
+    func getTimeOnFirePercentage(playing hero: Hero) -> Double {
+        guard let record = Profile.list[profile],
+              let stats = record.heroStats[hero.name] else {
             return 0
         }
+        return stats.secondsOnFire * 100 / stats.secondsPlayed
     }
 }
 
@@ -99,5 +89,33 @@ struct AverageMeasurment {
     
     static func HPS(on hero: Hero) -> Double {
         return measurements[hero.name]?.hps ?? 0
+    }
+}
+
+final class AveragePlayer: Player {
+    
+    private static let stats: (dps: Double, hps: Double) = (dps: 100, hps: 0)
+    override var nickname: String? { nil }
+    override var rank: Int { 0 }
+    override var level: Int { 0 }
+    
+    fileprivate init() {
+        super.init(profile: Profile(for: "", on: .pc))
+    }
+    
+    override func getDPS(on hero: Hero) -> Double {
+        return AveragePlayer.stats.dps
+    }
+    
+    override func getHPS(on hero: Hero) -> Double {
+        return AveragePlayer.stats.hps
+    }
+    
+    override func hasFavouriteHero(of hero: Hero) -> Bool {
+        return false
+    }
+    
+    override func getTimeOnFirePercentage(playing hero: Hero) -> Double {
+        return 0
     }
 }

@@ -6,9 +6,8 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-import Cocoa
-
 struct HeroStatsRecord {
+    
     var secondsPlayed: Double
     var secondsOnFire: Double
     
@@ -20,6 +19,7 @@ struct HeroStatsRecord {
 }
 
 struct ProfileInfo {
+    
     var heroStats = [String: HeroStatsRecord]()
     
     var competitiveRank: Int = 0
