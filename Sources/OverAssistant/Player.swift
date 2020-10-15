@@ -14,7 +14,7 @@ class Player {
     
     private var profile: Profile?
     
-    init() {}
+    fileprivate init() {}
     
     init(profile: Profile) {
         self.profile = profile
@@ -57,16 +57,7 @@ class Player {
     }
 }
 
-final class AveragePlayer: Player {
-    
-    @available (*, unavailable)
-    override init(profile: Profile) {
-        super.init()
-    }
-    
-    override init() {
-        super.init()
-    }
+fileprivate final class AveragePlayer: Player {
     
     override func getDPS(on hero: Hero) -> Double {
         switch hero.role {

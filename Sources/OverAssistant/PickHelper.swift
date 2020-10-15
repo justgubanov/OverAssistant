@@ -8,17 +8,24 @@
 
 struct PickHelper {
     
+    enum QueueType {
+        
+        case roleSpecific(Hero.Role)
+        case flexible
+    }
+    
     var allies = [Hero]()
     var enemies = [Hero]()
-    var typeOfQueue: Hero.Role?
     
     var conditions = GameConditions(map: nil, offenseSide: .symmetrical)
-    var player: Player = .average
+    var playerProfile: Profile?
+    var typeOfQueue: QueueType = .flexible
     
-    init() {}
-    
-    init(playerProfile: Profile) {
-        self.player = Player(profile: playerProfile)
+    private var player: Player {
+        guard let playerProfile = playerProfile else {
+            return .average
+        }
+        return Player(profile: playerProfile)
     }
     
     func getScoredHeroes() -> [Hero: PickScore] {
@@ -28,11 +35,12 @@ struct PickHelper {
         var heroesScores: [Hero: PickScore] = [:]
         
         for hero in availableHeroes {
-            if allies.contains(hero) ||
-            typeOfQueue != nil && hero.role != typeOfQueue {
+            guard !allies.contains(hero) else {
                 continue
             }
-            
+            if case .roleSpecific(let role) = typeOfQueue, hero.role != role {
+                continue
+            }
             var score = PickScore()
             
             if requirements.teamDPS > 0 {

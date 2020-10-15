@@ -6,21 +6,6 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-struct Map {
-    
-    enum Mode {
-        
-        case assault
-        case escort
-        case control
-        case hybrid
-        case push
-    }
-    
-    let name: String
-    let mode: Mode
-}
-
 struct GameConditions {
     
     enum OffenseSide: String {

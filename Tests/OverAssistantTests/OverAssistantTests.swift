@@ -18,9 +18,10 @@ final class OverAssistantTests: XCTestCase {
             XCTFail()
             return
         }
-        var helper = PickHelper(playerProfile: xogsnimProfile)
+        var helper = PickHelper()
+        helper.playerProfile = xogsnimProfile
         helper.conditions = GameConditions(map: nil, offenseSide: .symmetrical)
-        helper.typeOfQueue = .support
+        helper.typeOfQueue = .roleSpecific(.tank)
         
         helper.enemies = [HeroList[.tracer],
                           HeroList[.mercy],

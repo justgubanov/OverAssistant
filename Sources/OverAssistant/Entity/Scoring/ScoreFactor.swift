@@ -1,9 +1,8 @@
 //
-//  Coefficient.swift
-//  OWTB Alpha
+//  ScoreFactor.swift
+//  
 //
-//  Created by Александр Губанов on 12/05/2019.
-//  Copyright © 2019 Plekhanov University. All rights reserved.
+//  Created by Александр Губанов on 15.10.2020.
 //
 
 enum ScoreFactor: String {
@@ -50,23 +49,5 @@ enum ScoreFactor: String {
         case .teamSynergy:
             return 0.036232
         }
-    }
-}
-
-
-struct PickScore {
-    
-    var value: Double {
-        return sequence.reduce(0) {
-            $0 + $1.value
-        }
-    }
-    
-    private(set) var sequence: [ScoreFactor: Double] = [:]
-    
-    mutating func increase(with base: Double = 1, for factor: ScoreFactor) {
-        let amount = base * factor.value
-        let currentValue = sequence[factor] ?? 0
-        sequence.updateValue(currentValue + amount, forKey: factor)
     }
 }
