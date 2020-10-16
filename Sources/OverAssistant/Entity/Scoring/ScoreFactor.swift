@@ -5,7 +5,7 @@
 //  Created by Александр Губанов on 15.10.2020.
 //
 
-enum ScoreFactor: String {
+public enum ScoreFactor: String {
     
     case healthProvider
     case dps

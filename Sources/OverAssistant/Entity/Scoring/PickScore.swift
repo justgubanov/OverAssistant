@@ -8,13 +8,13 @@
 
 public struct PickScore {
     
-    var value: Double {
+    public var value: Double {
         return sequence.reduce(0) {
             $0 + $1.value
         }
     }
     
-    private(set) var sequence: [ScoreFactor: Double] = [:]
+    public private(set) var sequence: [ScoreFactor: Double] = [:]
     
     mutating func increase(with base: Double = 1, for factor: ScoreFactor) {
         let amount = base * factor.value
