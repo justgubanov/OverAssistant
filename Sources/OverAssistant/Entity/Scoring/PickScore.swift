@@ -6,7 +6,7 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-struct PickScore {
+public struct PickScore {
     
     var value: Double {
         return sequence.reduce(0) {

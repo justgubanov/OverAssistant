@@ -6,7 +6,7 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-struct Ability {
+public struct Ability {
     
     enum Kind: Int {
         
@@ -17,7 +17,7 @@ struct Ability {
 
     struct TagSet: OptionSet {
         
-        let rawValue: Int
+        public let rawValue: Int
         
         //for ultimate abilityes
         static let offensive = Self(rawValue: 1 << 0)

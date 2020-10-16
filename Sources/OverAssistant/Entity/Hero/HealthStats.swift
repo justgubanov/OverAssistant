@@ -6,7 +6,7 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-struct HealthStats {
+public struct HealthStats {
     
     var shield = 0
     var health = 0

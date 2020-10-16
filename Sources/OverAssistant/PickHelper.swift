@@ -6,7 +6,7 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-struct PickHelper {
+public struct PickHelper {
     
     enum QueueType {
         

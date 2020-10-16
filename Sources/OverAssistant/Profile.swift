@@ -6,7 +6,7 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-struct Profile {
+public struct Profile {
     
     enum Platform: String {
         
@@ -27,7 +27,7 @@ struct Profile {
 
 extension Profile: Hashable {
     
-    static func == (lhs: Profile, rhs: Profile) -> Bool {
+    public static func == (lhs: Profile, rhs: Profile) -> Bool {
         guard lhs.playerName == rhs.playerName,
               lhs.platform == rhs.platform else {
             return false
@@ -35,7 +35,7 @@ extension Profile: Hashable {
         return true
     }
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(platform)
         hasher.combine(playerName)
     }

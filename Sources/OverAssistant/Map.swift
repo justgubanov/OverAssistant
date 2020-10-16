@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Map {
+public struct Map {
     
     enum Mode {
         

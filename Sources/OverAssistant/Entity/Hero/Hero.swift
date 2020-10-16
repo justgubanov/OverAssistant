@@ -93,7 +93,7 @@ var counterMatrix: [[Int]] = [
     [0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0]
 ]
 
-class Hero {
+public class Hero {
     
     enum Playstyle: String {
         
@@ -174,11 +174,11 @@ class Hero {
 
 extension Hero: Hashable {
     
-    static func == (lhs: Hero, rhs: Hero) -> Bool {
+    public static func == (lhs: Hero, rhs: Hero) -> Bool {
         lhs.name == rhs.name
     }
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(name)
     }
 }

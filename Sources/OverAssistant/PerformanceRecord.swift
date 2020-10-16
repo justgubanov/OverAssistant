@@ -5,7 +5,7 @@
 //  Created by Александр Губанов on 13.10.2020.
 //
 
-struct PerformanceRecord {
+public struct PerformanceRecord {
     
     var secondsPlayed: Double
     var secondsOnFire: Double

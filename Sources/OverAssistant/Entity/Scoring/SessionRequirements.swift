@@ -6,7 +6,7 @@
 //  Copyright © 2019 Plekhanov University. All rights reserved.
 //
 
-struct SessionRequirements {
+public struct SessionRequirements {
     
     @NonNegative var teamHealth: Int = 0
     @NonNegative var teamDPS: Double = 0

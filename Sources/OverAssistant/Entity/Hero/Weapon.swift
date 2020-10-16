@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Weapon {
+public struct Weapon {
     
     enum Range: String {
         
