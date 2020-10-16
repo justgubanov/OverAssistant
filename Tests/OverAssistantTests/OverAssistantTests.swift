@@ -11,48 +11,38 @@ final class OverAssistantTests: XCTestCase {
             XCTFail()
             return
         }
-        var helper = PickHelper()
-        helper.playerProfile = xogsnimProfile
-        helper.conditions = GameConditions(map: nil, offenseSide: .symmetrical)
-        helper.typeOfQueue = .roleSpecific(.tank)
+        let availableHeroes = HeroList.list.map { $0.value }
         
-        helper.enemies = [HeroList[.tracer],
-                          HeroList[.mercy],
-                          HeroList[.winston],
-                          HeroList[.junkrat]]
+        let enemies = [HeroList[.tracer],
+                       HeroList[.mercy],
+                       HeroList[.winston],
+                       HeroList[.junkrat]]
+        let allies = [HeroList[.soldier76],
+                      HeroList[.roadhog],
+                      HeroList[.dva]]
+        let searchedRole: Hero.Role? = .damage
         
-        helper.allies = [HeroList[.soldier76],
-                         HeroList[.roadhog],
-                         HeroList[.dva]]
         
-        let pickOptions = helper.getScoredHeroes()
-        let sortedByScore = pickOptions.sorted { firstPick, secondPick in
-            firstPick.value.value > secondPick.value.value
+        var heroesScores: [Hero: PickScore] = [:]
+        let scoringBackground = ScoringBackground(allies: allies,
+                                                  enemies: enemies,
+                                                  targetProfile: xogsnimProfile,
+                                                  conditions: GameConditions(map: nil, offenseSide: .symmetrical))
+        
+        for hero in availableHeroes {
+            guard !allies.contains(hero) else {
+                continue
+            }
+            if let searchedRole = searchedRole,
+               hero.role != searchedRole {
+                continue
+            }
+            let score = Scoring(of: hero, in: scoringBackground).result
+            
+            heroesScores.updateValue(score, forKey: hero)
         }
-        let topFive = sortedByScore.prefix(5)
-        for (hero, score) in topFive {
-            print(hero.name, score.value, score.sequence[.dps] ?? 0)
-        }
         
-        print(HeroList.getHeroes(role: .support).map {$0.name} )
-    }
-    
-    func testSelectorWOProfile() {
-        var helper = PickHelper()
-        helper.conditions = GameConditions(map: nil, offenseSide: .symmetrical)
-        helper.typeOfQueue = .roleSpecific(.tank)
-        
-        helper.enemies = [HeroList[.tracer],
-                          HeroList[.mercy],
-                          HeroList[.winston],
-                          HeroList[.junkrat]]
-        
-        helper.allies = [HeroList[.soldier76],
-                         HeroList[.roadhog],
-                         HeroList[.dva]]
-        
-        let pickOptions = helper.getScoredHeroes()
-        let sortedByScore = pickOptions.sorted { firstPick, secondPick in
+        let sortedByScore = heroesScores.sorted { firstPick, secondPick in
             firstPick.value.value > secondPick.value.value
         }
         let topFive = sortedByScore.prefix(5)
@@ -64,7 +54,6 @@ final class OverAssistantTests: XCTestCase {
     }
     
     static var allTests = [
-        ("testSelectorWithProfile", testSelectorWithProfile),
-        ("testSelectorWOProfile", testSelectorWOProfile),
+        ("testSelectorWithProfile", testSelectorWithProfile)
     ]
 }

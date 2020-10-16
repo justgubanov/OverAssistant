@@ -16,7 +16,7 @@ public enum ScoreFactor: String {
     case havingSuitableUltimate
     case havingSuitableRange
     case playStyle
-    case countering
+    case counteringEnemy
     case notBeingCountered
     case teamSynergy
     
@@ -42,7 +42,7 @@ public enum ScoreFactor: String {
         case .havingSuitableAbility:
             return 0.028986
         
-        case .countering:
+        case .counteringEnemy:
             return 0.019324
         case .notBeingCountered:
             return 0.014493
