@@ -14,12 +14,12 @@ public struct PickHelper {
         case flexible
     }
     
-    var allies: [Hero] = []
-    var enemies: [Hero] = []
+    public var allies: [Hero] = []
+    public var enemies: [Hero] = []
     
-    var conditions = GameConditions(map: nil, offenseSide: .symmetrical)
-    var playerProfile: Profile?
-    var typeOfQueue: QueueType = .flexible
+    public var conditions = GameConditions(map: nil, offenseSide: .symmetrical)
+    public var playerProfile: Profile?
+    public var typeOfQueue: QueueType = .flexible
     
     private var player: Player {
         guard let playerProfile = playerProfile else {

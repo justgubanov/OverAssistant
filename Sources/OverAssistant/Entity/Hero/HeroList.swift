@@ -195,13 +195,13 @@ public enum HeroList {
         return HeroList.list[hero]!
     }
     
-    public static subscript(heroNumber: Int) -> Hero? {
+    public static subscript(heroNumber number: Int) -> Hero? {
         let numbersRange = 1...list.count
         
-        guard numbersRange.contains(heroNumber) else {
+        guard numbersRange.contains(number) else {
             return nil
         }
-        let match = list.filter { $1.number == heroNumber }
+        let match = list.filter { $1.number == number }
         let requestedHero = match.first?.value
         return requestedHero
     }
