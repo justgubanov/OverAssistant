@@ -14,4 +14,11 @@ public struct ScoringBackground {
     
     public var targetProfile: Profile?
     public var conditions: GameConditions
+
+    public init(allies: [Hero], enemies: [Hero], targetProfile: Profile? = nil, conditions: GameConditions) {
+        self.allies = allies
+        self.enemies = enemies
+        self.targetProfile = targetProfile
+        self.conditions = conditions
+    }
 }
