@@ -4,13 +4,13 @@ import XCTest
 final class OverAssistantTests: XCTestCase {
     
     func testSelectorWithProfile() {
-        ProfileProvider().loadProfile(nickname: "Xogsnim", platform: .psn)
-        sleep(10)
-        
-        guard let xogsnimProfile = ProfileStorage["Xogsnim"] else {
-            XCTFail()
-            return
-        }
+//        ProfileProvider().loadProfile(nickname: "Xogsnim", platform: .psn)
+//        sleep(10)
+//
+//        guard let xogsnimProfile = ProfileStorage["Xogsnim"] else {
+//            XCTFail()
+//            return
+//        }
         let availableHeroes = HeroList.list.map { $0.value }
         
         let enemies = [HeroList[.tracer],
@@ -26,7 +26,7 @@ final class OverAssistantTests: XCTestCase {
         var heroesScores: [Hero: PickScore] = [:]
         let scoringBackground = ScoringBackground(allies: allies,
                                                   enemies: enemies,
-                                                  targetProfile: xogsnimProfile,
+//                                                  targetProfile: xogsnimProfile,
                                                   conditions: GameConditions(map: nil, offenseSide: .symmetrical))
         
         for hero in availableHeroes {

@@ -22,7 +22,7 @@ public struct Scoring {
         requirements = Self.makeSessionRequirements(for: background, player: player)
     }
     
-    var result: PickScore {
+    public var result: PickScore {
         var score = PickScore()
         
         increaseScoreForHeroDPS(&score)
