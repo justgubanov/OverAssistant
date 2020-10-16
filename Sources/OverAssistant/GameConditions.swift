@@ -8,7 +8,7 @@
 
 public struct GameConditions {
     
-    enum OffenseSide: String {
+    public enum OffenseSide: String {
         
         case attack
         case defence
@@ -18,7 +18,7 @@ public struct GameConditions {
     var map: Map?
     var offenseSide: OffenseSide
     
-    init (map: Map? = nil, offenseSide: OffenseSide) {
+    public init (map: Map? = nil, offenseSide: OffenseSide) {
         self.map = map
         self.offenseSide = offenseSide
     }

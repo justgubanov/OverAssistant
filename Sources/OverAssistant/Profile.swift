@@ -8,7 +8,7 @@
 
 public struct Profile {
     
-    enum Platform: String {
+    public enum Platform: String {
         
         case psn
         case xBox

@@ -105,7 +105,7 @@ public class Hero {
         case sniper
     }
     
-    enum Role: String {
+    public enum Role: String {
         
         case tank
         case damage

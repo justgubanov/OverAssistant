@@ -5,8 +5,9 @@
 //  Created by Александр Губанов on 24/07/2019.
 //
 
-enum HeroList {
-    static let list = [
+public enum HeroList {
+    
+    public static let list = [
         tracer :
             Hero(name: "Tracer", number: 1,
                  abilities: [Ability(name: "Pulse Bomb", kind: .ultimate, tags: .offensive)],
@@ -190,11 +191,22 @@ enum HeroList {
     case moira, brigitte, wreckingball, ashe, baptiste
     case sigma
     
-    static subscript(hero: HeroList) -> Hero {
+    public static subscript(hero: HeroList) -> Hero {
         return HeroList.list[hero]!
     }
     
-    static func getHeroes(role: Hero.Role) -> [Hero] {
+    public static subscript(heroNumber: Int) -> Hero? {
+        let numbersRange = 1...list.count
+        
+        guard numbersRange.contains(heroNumber) else {
+            return nil
+        }
+        let match = list.filter { $1.number == heroNumber }
+        let requestedHero = match.first?.value
+        return requestedHero
+    }
+    
+    public static func getHeroes(role: Hero.Role) -> [Hero] {
         return list.filter {
             $0.value.role == role
         }

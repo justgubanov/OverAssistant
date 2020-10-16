@@ -18,7 +18,9 @@ public struct ProfileProvider {
         var level: Int = 0
     }
     
-    func loadProfile(nickname: String, platform: Profile.Platform) {
+    public init() {}
+    
+    public func loadProfile(nickname: String, platform: Profile.Platform) {
         loadInfo(nickname: nickname, platform: platform) { info in
             let newProfile = Profile(playerName: nickname,
                                      platform: platform,

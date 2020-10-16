@@ -8,14 +8,14 @@
 
 public struct PickHelper {
     
-    enum QueueType {
+    public enum QueueType {
         
         case roleSpecific(Hero.Role)
         case flexible
     }
     
-    var allies = [Hero]()
-    var enemies = [Hero]()
+    var allies: [Hero] = []
+    var enemies: [Hero] = []
     
     var conditions = GameConditions(map: nil, offenseSide: .symmetrical)
     var playerProfile: Profile?
@@ -28,7 +28,9 @@ public struct PickHelper {
         return Player(profile: playerProfile)
     }
     
-    func getScoredHeroes() -> [Hero: PickScore] {
+    public init() {}
+    
+    public func getScoredHeroes() -> [Hero: PickScore] {
         let requirements = makeSessionRequirements()
         let availableHeroes = HeroList.list.map { $0.value }
         
