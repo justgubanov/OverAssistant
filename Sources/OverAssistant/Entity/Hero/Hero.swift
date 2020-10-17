@@ -120,17 +120,6 @@ public class Hero {
     var playstyle: Playstyle
     var abilityList: [Ability]
     var weaponList: [Weapon]
-    
-    var jsonName: String {
-        switch name {
-        case "Torbjörn": return "torbjorn"
-        case "Soldier: 76": return "soldier76"
-        case "Lúcio": return "lucio"
-        case "D.Va": return "dva"
-        case "Wrecking Ball": return "wrecking_ball"
-        default: return name.lowercased()
-        }
-    }
 
     init (name: String, number: Int, abilities: [Ability], weapons: [Weapon], role: Role, playstyle: Playstyle, health: HealthStats) {
         self.name = name

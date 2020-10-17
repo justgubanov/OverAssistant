@@ -99,3 +99,23 @@ public struct ProfileProvider {
         }
     }
 }
+
+fileprivate extension Hero {
+    
+    var jsonName: String {
+        switch name {
+        case "Torbjörn":
+            return "torbjorn"
+        case "Soldier: 76":
+            return "soldier76"
+        case "Lúcio":
+            return "lucio"
+        case "D.Va":
+            return "dva"
+        case "Wrecking Ball":
+            return "wrecking_ball"
+        default:
+            return name.lowercased()
+        }
+    }
+}
