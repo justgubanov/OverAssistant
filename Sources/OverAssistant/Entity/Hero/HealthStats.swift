@@ -36,6 +36,6 @@ public struct HealthStats {
 extension HealthStats: ExpressibleByIntegerLiteral {
     
     public init(integerLiteral rawHealth: Int) {
-        rawHealth = Double(rawHealth)
+        self.rawHealth = Double(rawHealth)
     }
 }
