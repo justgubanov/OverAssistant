@@ -132,11 +132,11 @@ public class Hero {
         }
     }
 
-    init (name: String, number: Int, abilities: [Ability], weapons: [Weapon], role: Role, playstyle: Playstyle, health: Int, shield: Int = 0, armour: Int = 0) {
+    init (name: String, number: Int, abilities: [Ability], weapons: [Weapon], role: Role, playstyle: Playstyle, health: HealthStats) {
         self.name = name
         self.number = number
         self.role = role
-        self.stats = HealthStats(shield: shield, health: health, armour: armour)
+        self.stats = health
         
         self.playstyle = playstyle
         self.abilityList = abilities

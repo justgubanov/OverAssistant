@@ -52,7 +52,7 @@ public struct Scoring {
         var requirements = SessionRequirements(for: background.conditions)
         
         for hero in background.allies {
-            requirements.teamHealth -= hero.stats.fullHealth
+            requirements.teamHealth -= hero.stats.effectiveHealth
             requirements.teamDPS -= player.getDPS(on: hero)
             requirements.teamHPS -= player.getHPS(on: hero)
             requirements.ultimatesTags.remove(hero.getUltimateAbilityTags())
@@ -91,7 +91,7 @@ extension Scoring {
         guard requirements.teamHealth > 0 else {
             return
         }
-        let rewardedHealth = min(hero.stats.fullHealth, requirements.teamHealth)
+        let rewardedHealth = min(hero.stats.effectiveHealth, requirements.teamHealth)
         score.increase(with: Double(rewardedHealth), for: .healthProvider)
     }
     

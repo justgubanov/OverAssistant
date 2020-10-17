@@ -32,7 +32,7 @@ public enum HeroList {
             Hero(name: "Reinhardt", number: 5,
                  abilities: [Ability(name: "Earthshatter", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Rocket Hammer", range: .close)],
-                 role: .tank, playstyle: .damageAbsorber, health: 300, armour: 200),
+                 role: .tank, playstyle: .damageAbsorber, health: .init(300, armour: 200)),
         
         
         mercy :
@@ -46,7 +46,7 @@ public enum HeroList {
                  abilities: [Ability(name: "Molten Core", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Rivet Gun", range: .medium),
                            Weapon(name: "Forge Hammer", range: .close)],
-                 role: .damage, playstyle: .choker, health: 200),
+                 role: .damage, playstyle: .choker, health: .init(200, armour: 50)),
         hanzo :
             Hero(name: "Hanzo", number: 8,
                  abilities: [Ability(name: "Dragonstrike", kind: .ultimate, tags: .offensive)],
@@ -56,12 +56,12 @@ public enum HeroList {
             Hero(name: "Winston", number: 9,
                  abilities: [Ability(name: "Primal Rage", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Tesla Cannon", range: .close)],
-                 role: .tank, playstyle: .damageAbsorber, health: 400, armour: 100),
+                 role: .tank, playstyle: .damageAbsorber, health: .init(400, armour: 100)),
         zenyatta :
             Hero(name: "Zenyatta", number: 10,
                  abilities: [Ability(name: "Transcendence", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Orb of Destruction", range: .medium)],
-                 role: .support, playstyle: .healer, health: 50, shield: 150),
+                 role: .support, playstyle: .healer, health: .init(50, shield: 150)),
         
         
         bastion :
@@ -70,17 +70,17 @@ public enum HeroList {
                  weapons: [Weapon(name: "Configuration: Recon", range: .medium),
                            Weapon(name: "Configuration: Sentry", range: .medium),
                            Weapon(name: "Configuration: Tank", range: .medium)],
-                 role: .damage, playstyle: .choker, health: 200, armour: 100),
+                 role: .damage, playstyle: .choker, health: .init(200, armour: 100)),
         symmetra :
             Hero(name: "Symmetra", number: 12,
                  abilities: [Ability(name: "Photon Barrier", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Photon Projector", range: .close)],
-                 role: .damage, playstyle: .choker, health: 100, shield: 100),
+                 role: .damage, playstyle: .choker, health: .init(100, shield: 100)),
         zarya :
             Hero(name: "Zarya", number: 13,
                  abilities: [Ability(name: "Graviton Surge", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Particle Cannon", range: .long)],
-                 role: .tank, playstyle: .damageAbsorber, health: 200, shield: 200),
+                 role: .tank, playstyle: .damageAbsorber, health: .init(200, shield: 200)),
         mccree :
             Hero(name: "McCree", number: 14,
                  abilities: [Ability(name: "Deadeye", kind: .ultimate, tags: .offensive)],
@@ -114,7 +114,7 @@ public enum HeroList {
                              Ability(name: "Call Mech", kind: .ultimate, tags: .special)],
                  weapons: [Weapon(name: "Fusion Cannons", range: .close),
                            Weapon(name: "Light Gun", range: .close)],
-                 role: .tank, playstyle: .damageAbsorber, health: 400, armour: 200),
+                 role: .tank, playstyle: .damageAbsorber, health: .init(400, armour: 200)),
         mei :
             Hero(name: "Mei", number: 20,
                  abilities: [Ability(name: "Blizzard", kind: .ultimate, tags: .control)],
@@ -141,7 +141,7 @@ public enum HeroList {
             Hero(name: "Orisa", number: 24,
                  abilities: [Ability(name: "Supercharger", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Fusion Driver", range: .medium)],
-                 role: .tank, playstyle: .damageAbsorber, health: 200, armour: 200),
+                 role: .tank, playstyle: .damageAbsorber, health: .init(200, armour: 250)),
         doomfist :
             Hero(name: "Doomfist", number: 25,
                  abilities: [Ability(name: "Meteor strike", kind: .ultimate, tags: .control)],
@@ -158,12 +158,12 @@ public enum HeroList {
             Hero(name: "Brigitte", number: 27,
                  abilities: [Ability(name: "Rally", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Rocket Flail", range: .close)],
-                 role: .support, playstyle: .healer, health: 200, armour: 50),
+                 role: .support, playstyle: .healer, health: .init(150, armour: 50)),
         wreckingball :
             Hero(name: "Wrecking Ball", number: 28,
                  abilities: [Ability(name: "Minefield", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Quad Cannons", range: .close)],
-                 role: .tank, playstyle: .damageAbsorber, health: 500, armour: 100),
+                 role: .tank, playstyle: .damageAbsorber, health: .init(500, armour: 100)),
         ashe :
             Hero(name: "Ashe", number: 29,
                  abilities: [Ability(name: "B.O.B.", kind: .ultimate, tags: .offensive)],
@@ -181,7 +181,7 @@ public enum HeroList {
                  abilities: [Ability(name: "Gravitic Flux", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Hyperspheres", range: .medium),
                            Weapon(name: "Accretion", range: .close)],
-                 role: .tank, playstyle: .damageAbsorber, health: 300, shield: 100)
+                 role: .tank, playstyle: .damageAbsorber, health: .init(300, shield: 100)),
         echo :
             Hero(name: "Echo", number: 32,
                  abilities: [Ability(name: "Duplicate", kind: .ultimate, tags: .special)],
