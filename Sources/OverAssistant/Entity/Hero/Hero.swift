@@ -68,18 +68,20 @@ public class Hero {
         case support
     }
     
-    var name: String
-    var number: Int
-    var role: Role
-    var stats: HealthStats
+    let id: HeroId
     
-    var playstyle: Playstyle
-    var abilityList: [Ability]
-    var weaponList: [Weapon]
+    let name: String
+    var number: Int { id.number }
+    let role: Role
+    let stats: HealthStats
+    
+    let playstyle: Playstyle
+    let abilityList: [Ability]
+    let weaponList: [Weapon]
 
-    init (name: String, number: Int, abilities: [Ability], weapons: [Weapon], role: Role, playstyle: Playstyle, health: HealthStats) {
+    init (id: HeroId, name: String, abilities: [Ability], weapons: [Weapon], role: Role, playstyle: Playstyle, health: HealthStats) {
+        self.id = id
         self.name = name
-        self.number = number
         self.role = role
         self.stats = health
         

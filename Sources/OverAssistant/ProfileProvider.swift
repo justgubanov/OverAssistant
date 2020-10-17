@@ -58,7 +58,7 @@ public struct ProfileProvider {
             let competitiveStats = json["any", "heroes", "stats", "competitive"]
             let quickplayStats = json["any", "heroes", "stats", "quickplay"]
 
-            for (jsonName, heroName) in HeroList.list.map( { ($0.value.jsonName, $0.value.name) } ) {
+            for (jsonName, heroName) in HeroProvider.list.map( { ($0.jsonName, $0.name) } ) {
                 let competitiveTime = competitiveStats[jsonName, "general_stats", "time_played"].double ?? 0
                 let quickplayTime = quickplayStats[jsonName, "general_stats", "time_played"].double ?? 0
 

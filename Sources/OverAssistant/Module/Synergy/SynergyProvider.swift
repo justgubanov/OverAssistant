@@ -60,7 +60,7 @@ class SynergyProvider {
     ]
     
     static func getSynergy(between firstHero: Hero, and secondHero: Hero) -> SynergyClass? {
-        guard let synergyKey = DuoSynergy(firstHero.name, secondHero.name) else {
+        guard let synergyKey = DuoSynergy(firstHero.id, secondHero.id) else {
             return nil
         }
         if let synergy = synergyRecords[synergyKey] {

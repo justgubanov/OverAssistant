@@ -9,9 +9,7 @@ import Foundation
 
 struct DuoSynergy {
     
-    typealias HeroId = String
-    
-    private let duoIdStrings: Set<String>
+    private let duoIdStrings: Set<HeroId>
     
     init?(_ firstId: HeroId, _ secondId: HeroId) {
         guard firstId != secondId else {

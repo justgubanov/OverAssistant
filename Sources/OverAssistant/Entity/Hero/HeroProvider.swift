@@ -1,189 +1,157 @@
 //
-//  HeroList.swift
+//  HeroProvider.swift
 //  OWTB Alpha
 //
 //  Created by Александр Губанов on 24/07/2019.
 //
 
-public enum HeroList: String {
+public struct HeroProvider {
     
     public static let list = [
-        tracer :
-            Hero(name: "Tracer", number: 1,
+            Hero(id: 1, name: "Tracer",
                  abilities: [Ability(name: "Pulse Bomb", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Pulse Pistols", range: .medium)],
                  role: .damage, playstyle: .flanker, health: 150),
-        reaper :
-            Hero(name: "Reaper", number: 2,
+            Hero(id: 2, name: "Reaper",
                  abilities: [Ability(name: "Death Blossom", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Hellfire Shotguns", range: .close)],
                  role: .damage, playstyle: .flanker, health: 250),
-        widowmaker :
-            Hero(name: "Widowmaker", number: 3,
+            Hero(id: 3, name: "Widowmaker",
                  abilities: [Ability(name: "Infra-Sight", kind: .ultimate, tags: .special)],
                  weapons: [Weapon(name: "Widow's Kiss", range: .long)],
                  role: .damage, playstyle: .sniper, health: 200),
-        pharah :
-            Hero(name: "Pharah", number: 4,
+            Hero(id: 4, name: "Pharah",
                  abilities: [Ability(name: "Barrage", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Rocket Launcher", range: .medium)],
                  role: .damage, playstyle: .assault, health: 200),
-        reinhardt :
-            Hero(name: "Reinhardt", number: 5,
+            Hero(id: 5, name: "Reinhardt",
                  abilities: [Ability(name: "Earthshatter", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Rocket Hammer", range: .close)],
                  role: .tank, playstyle: .damageAbsorber, health: .init(300, armour: 200)),
         
         
-        mercy :
-            Hero(name: "Mercy", number: 6,
+            Hero(id: 6, name: "Mercy",
                  abilities: [Ability(name: "Valkyrie", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Caduceus Staff", range: .medium),
                            Weapon(name: "Caduceus Blaster", range: .medium)],
                  role: .support, playstyle: .healer, health: 200),
-        torbjorn :
-            Hero(name: "Torbjörn", number: 7,
+            Hero(id: 7, name: "Torbjörn",
                  abilities: [Ability(name: "Molten Core", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Rivet Gun", range: .medium),
                            Weapon(name: "Forge Hammer", range: .close)],
                  role: .damage, playstyle: .choker, health: .init(200, armour: 50)),
-        hanzo :
-            Hero(name: "Hanzo", number: 8,
+            Hero(id: 8, name: "Hanzo",
                  abilities: [Ability(name: "Dragonstrike", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Storm Bow", range: .long)],
                  role: .damage, playstyle: .sniper, health: 200),
-        winston :
-            Hero(name: "Winston", number: 9,
+            Hero(id: 9, name: "Winston",
                  abilities: [Ability(name: "Primal Rage", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Tesla Cannon", range: .close)],
                  role: .tank, playstyle: .damageAbsorber, health: .init(400, armour: 100)),
-        zenyatta :
-            Hero(name: "Zenyatta", number: 10,
+            Hero(id: 10, name: "Zenyatta",
                  abilities: [Ability(name: "Transcendence", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Orb of Destruction", range: .medium)],
                  role: .support, playstyle: .healer, health: .init(50, shield: 150)),
         
         
-        bastion :
-            Hero(name: "Bastion", number: 11,
+            Hero(id: 11, name: "Bastion",
                  abilities: [Ability(name: "Configuration: Tank", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Configuration: Recon", range: .medium),
                            Weapon(name: "Configuration: Sentry", range: .medium),
                            Weapon(name: "Configuration: Tank", range: .medium)],
                  role: .damage, playstyle: .choker, health: .init(200, armour: 100)),
-        symmetra :
-            Hero(name: "Symmetra", number: 12,
+            Hero(id: 12, name: "Symmetra",
                  abilities: [Ability(name: "Photon Barrier", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Photon Projector", range: .close)],
                  role: .damage, playstyle: .choker, health: .init(100, shield: 100)),
-        zarya :
-            Hero(name: "Zarya", number: 13,
+            Hero(id: 13, name: "Zarya",
                  abilities: [Ability(name: "Graviton Surge", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Particle Cannon", range: .long)],
                  role: .tank, playstyle: .damageAbsorber, health: .init(200, shield: 200)),
-        mccree :
-            Hero(name: "McCree", number: 14,
+            Hero(id: 14, name: "McCree",
                  abilities: [Ability(name: "Deadeye", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Peacekeeper", range: .long)],
                  role: .damage, playstyle: .assault, health: 200),
-        soldier76 :
-            Hero(name: "Soldier: 76", number: 15,
+            Hero(id: 15, name: "Soldier: 76",
                  abilities: [Ability(name: "Tactical Visor", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Heavy Pulse Rifle", range: .long)],
                  role: .damage, playstyle: .assault, health: 200),
         
         
-        lucio :
-            Hero(name: "Lúcio", number: 16,
+            Hero(id: 16, name: "Lúcio",
                  abilities: [Ability(name: "Sound Barrier", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Sonic Amplifier", range: .close)],
                  role: .support, playstyle: .healer, health: 200),
-        roadhog :
-            Hero(name: "Roadhog", number: 17,
+            Hero(id: 17, name: "Roadhog",
                  abilities: [Ability(name: "Whole Hog", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Scrap Gun", range: .close)],
                  role: .tank, playstyle: .damageAbsorber, health: 600),
-        junkrat :
-            Hero(name: "Junkrat", number: 18,
+            Hero(id: 18, name: "Junkrat",
                  abilities: [Ability(name: "RIP-Tire", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Frag Launcher", range: .medium)],
                  role: .damage, playstyle: .choker, health: 200),
-        dva :
-            Hero(name: "D.Va", number: 19,
+            Hero(id: 19, name: "D.Va",
                  abilities: [Ability(name: "Self-Destruct", kind: .ultimate, tags: .offensive),
                              Ability(name: "Call Mech", kind: .ultimate, tags: .special)],
                  weapons: [Weapon(name: "Fusion Cannons", range: .close),
                            Weapon(name: "Light Gun", range: .close)],
                  role: .tank, playstyle: .damageAbsorber, health: .init(400, armour: 200)),
-        mei :
-            Hero(name: "Mei", number: 20,
+            Hero(id: 20, name: "Mei",
                  abilities: [Ability(name: "Blizzard", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Endothermic Blaster", range: .medium)],
                  role: .damage, playstyle: .assault, health: 250),
         
         
-        genji :
-            Hero(name: "Genji", number: 21,
+            Hero(id: 21, name: "Genji",
                  abilities: [Ability(name: "Dragonblade", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Shuriken", range: .medium)],
                  role: .damage, playstyle: .flanker, health: 200),
-        ana :
-            Hero(name: "Ana", number: 22,
+            Hero(id: 22, name: "Ana",
                  abilities: [Ability(name: "Nano Boost", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Biotic Rifle", range: .long)],
                  role: .support, playstyle: .healer, health: 200),
-        sombra :
-            Hero(name: "Sombra", number: 23,
+            Hero(id: 23, name: "Sombra",
                  abilities: [Ability(name: "EMP", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Machine Pistol", range: .medium)],
                  role: .damage, playstyle: .flanker, health: 200),
-        orisa :
-            Hero(name: "Orisa", number: 24,
+            Hero(id: 24, name: "Orisa",
                  abilities: [Ability(name: "Supercharger", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "Fusion Driver", range: .medium)],
                  role: .tank, playstyle: .damageAbsorber, health: .init(200, armour: 250)),
-        doomfist :
-            Hero(name: "Doomfist", number: 25,
+            Hero(id: 25, name: "Doomfist",
                  abilities: [Ability(name: "Meteor strike", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Hand Cannon", range: .close)],
                  role: .damage, playstyle: .flanker, health: 250),
         
         
-        moira :
-            Hero(name: "Moira", number: 26,
+            Hero(id: 26, name: "Moira",
                  abilities: [Ability(name: "Coalescence", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Biotic Grasp", range: .close)],
                  role: .support, playstyle: .healer, health: 200),
-        brigitte :
-            Hero(name: "Brigitte", number: 27,
+            Hero(id: 27, name: "Brigitte",
                  abilities: [Ability(name: "Rally", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Rocket Flail", range: .close)],
                  role: .support, playstyle: .healer, health: .init(150, armour: 50)),
-        wreckingball :
-            Hero(name: "Wrecking Ball", number: 28,
+            Hero(id: 28, name: "Wrecking Ball",
                  abilities: [Ability(name: "Minefield", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Quad Cannons", range: .close)],
                  role: .tank, playstyle: .damageAbsorber, health: .init(500, armour: 100)),
-        ashe :
-            Hero(name: "Ashe", number: 29,
+            Hero(id: 29, name: "Ashe",
                  abilities: [Ability(name: "B.O.B.", kind: .ultimate, tags: .offensive)],
                  weapons: [Weapon(name: "The Viper", range: .long)],
                  role: .damage, playstyle: .assault, health: 200),
-        baptiste :
-            Hero(name: "Baptiste", number: 30,
+            Hero(id: 30, name: "Baptiste",
                  abilities: [Ability(name: "Amplification Matrix", kind: .ultimate, tags: .special)],
                  weapons: [Weapon(name: "Biotic Launcher", range: .medium)],
                  role: .support, playstyle: .healer, health: 200),
         
         
-        sigma :
-            Hero(name: "Sigma", number: 31,
+            Hero(id: 31, name: "Sigma",
                  abilities: [Ability(name: "Gravitic Flux", kind: .ultimate, tags: .control)],
                  weapons: [Weapon(name: "Hyperspheres", range: .medium),
                            Weapon(name: "Accretion", range: .close)],
                  role: .tank, playstyle: .damageAbsorber, health: .init(300, shield: 100)),
-        echo :
-            Hero(name: "Echo", number: 32,
+            Hero(id: 32, name: "Echo",
                  abilities: [Ability(name: "Duplicate", kind: .ultimate, tags: .special)],
                  weapons: [Weapon(name: "Tri-Shot", range: .medium),
                            Weapon(name: "Sticky Bombs", range: .medium),
@@ -191,33 +159,15 @@ public enum HeroList: String {
                  role: .damage, playstyle: .assault, health: 200)
     ]
     
-    case tracer, reaper, widowmaker, pharah, reinhardt
-    case mercy, torbjorn, hanzo, winston, zenyatta
-    case bastion, symmetra, zarya, mccree, soldier76
-    case lucio, roadhog, junkrat, dva, mei
-    case genji, ana, sombra, orisa, doomfist
-    case moira, brigitte, wreckingball, ashe, baptiste
-    case sigma, echo
-    
-    public static subscript(hero: HeroList) -> Hero {
-        return HeroList.list[hero]!
-    }
-    
-    public static subscript(heroNumber number: Int) -> Hero? {
-        let numbersRange = 1...list.count
-        
-        guard numbersRange.contains(number) else {
-            return nil
+    public static func getHero(id: HeroId) -> Hero? {
+        return Self.list.first {
+            $0.id == id
         }
-        let match = list.filter { $1.number == number }
-        let requestedHero = match.first?.value
-        return requestedHero
     }
     
     public static func getHeroes(role: Hero.Role) -> [Hero] {
         return list.filter {
-            $0.value.role == role
+            $0.role == role
         }
-        .map { $1 }
     }
 }

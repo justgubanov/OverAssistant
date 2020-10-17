@@ -15,16 +15,16 @@ final class ScoringTests: XCTestCase {
 //            XCTFail()
 //            return
 //        }
-        let availableHeroes = HeroList.list.map { $0.value }
+        let availableHeroes = HeroProvider.list
         
-        let enemies = [HeroList[.tracer],
-                       HeroList[.mercy],
-                       HeroList[.winston],
-                       HeroList[.junkrat]]
-        let allies = [HeroList[.wreckingball],
-                      HeroList[.roadhog],
-                      HeroList[.widowmaker],
-                      HeroList[.moira]]
+        let enemies = [HeroProvider.getHero(id: .tracer)!,
+                       HeroProvider.getHero(id: .mercy)!,
+                       HeroProvider.getHero(id: .winston)!,
+                       HeroProvider.getHero(id: .junkrat)!]
+        let allies = [HeroProvider.getHero(id: .wreckingBall)!,
+                      HeroProvider.getHero(id: .roadhog)!,
+                      HeroProvider.getHero(id: .widowmaker)!,
+                      HeroProvider.getHero(id: .moira)!]
         let searchedRole: Hero.Role? = .damage
         
         
@@ -55,6 +55,6 @@ final class ScoringTests: XCTestCase {
             print(hero.name, score.value, score.sequence[.dps] ?? 0)
         }
         
-        print(HeroList.getHeroes(role: .support).map {$0.name} )
+        print(HeroProvider.getHeroes(role: .support).map {$0.name} )
     }
 }
