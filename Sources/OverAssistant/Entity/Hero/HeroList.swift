@@ -75,7 +75,7 @@ public enum HeroList {
             Hero(name: "Symmetra", number: 12,
                  abilities: [Ability(name: "Photon Barrier", kind: .ultimate, tags: .defensive)],
                  weapons: [Weapon(name: "Photon Projector", range: .close)],
-                 role: .support, playstyle: .choker, health: 100, shield: 100),
+                 role: .damage, playstyle: .choker, health: 100, shield: 100),
         zarya :
             Hero(name: "Zarya", number: 13,
                  abilities: [Ability(name: "Graviton Surge", kind: .ultimate, tags: .control)],
@@ -178,9 +178,17 @@ public enum HeroList {
         
         sigma :
             Hero(name: "Sigma", number: 31,
-                 abilities: [],
-                 weapons: [],
+                 abilities: [Ability(name: "Gravitic Flux", kind: .ultimate, tags: .control)],
+                 weapons: [Weapon(name: "Hyperspheres", range: .medium),
+                           Weapon(name: "Accretion", range: .close)],
                  role: .tank, playstyle: .damageAbsorber, health: 300, shield: 100)
+        echo :
+            Hero(name: "Echo", number: 32,
+                 abilities: [Ability(name: "Duplicate", kind: .ultimate, tags: .special)],
+                 weapons: [Weapon(name: "Tri-Shot", range: .medium),
+                           Weapon(name: "Sticky Bombs", range: .medium),
+                           Weapon(name: "Focusing Beam", range: .close)],
+                 role: .damage, playstyle: .assault, health: 200)
     ]
     
     case tracer, reaper, widowmaker, pharah, reinhardt
@@ -189,7 +197,7 @@ public enum HeroList {
     case lucio, roadhog, junkrat, dva, mei
     case genji, ana, sombra, orisa, doomfist
     case moira, brigitte, wreckingball, ashe, baptiste
-    case sigma
+    case sigma, echo
     
     public static subscript(hero: HeroList) -> Hero {
         return HeroList.list[hero]!

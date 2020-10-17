@@ -30,7 +30,7 @@ public struct Scoring {
         increaseScoreForHeroHealth(&score)
         increaseScoreForHeroTimeOnFire(&score)
         
-        increaseScoreForHeroPreference (&score)
+        increaseScoreForHeroPreference(&score)
         increaseScoreForHeroPlayStyle(&score)
         increaseScoreForHeroRangeCoverage(&score)
         increaseScoreForHeroUltimate(&score)
