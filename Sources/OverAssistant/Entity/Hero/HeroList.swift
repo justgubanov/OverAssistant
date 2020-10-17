@@ -5,7 +5,7 @@
 //  Created by Александр Губанов on 24/07/2019.
 //
 
-public enum HeroList {
+public enum HeroList: String {
     
     public static let list = [
         tracer :

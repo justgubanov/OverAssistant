@@ -1,7 +1,11 @@
 import XCTest
 @testable import OverAssistant
 
-final class OverAssistantTests: XCTestCase {
+final class ScoringTests: XCTestCase {
+    
+    static var allTests = [
+        ("testSelectorWithProfile", testSelectorWithProfile)
+    ]
     
     func testSelectorWithProfile() {
 //        ProfileProvider().loadProfile(nickname: "Xogsnim", platform: .psn)
@@ -17,9 +21,10 @@ final class OverAssistantTests: XCTestCase {
                        HeroList[.mercy],
                        HeroList[.winston],
                        HeroList[.junkrat]]
-        let allies = [HeroList[.soldier76],
+        let allies = [HeroList[.wreckingball],
                       HeroList[.roadhog],
-                      HeroList[.dva]]
+                      HeroList[.widowmaker],
+                      HeroList[.moira]]
         let searchedRole: Hero.Role? = .damage
         
         
@@ -52,8 +57,4 @@ final class OverAssistantTests: XCTestCase {
         
         print(HeroList.getHeroes(role: .support).map {$0.name} )
     }
-    
-    static var allTests = [
-        ("testSelectorWithProfile", testSelectorWithProfile)
-    ]
 }

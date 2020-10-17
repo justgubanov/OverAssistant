@@ -4,6 +4,7 @@ import XCTest
 public func allTests() -> [XCTestCaseEntry] {
     return [
         testCase(OverAssistantTests.allTests),
+        textCase(SynergyClassTests.allTests)
     ]
 }
 #endif
