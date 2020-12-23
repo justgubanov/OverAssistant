@@ -1,13 +1,13 @@
 //
-//  DuoSynergy.swift
-//  
+//  SynergyKey.swift
+//
 //
 //  Created by Александр Губанов on 17.10.2020.
 //
 
 import Foundation
 
-struct DuoSynergy {
+struct SynergyKey {
     
     private let duoIdStrings: Set<HeroId>
     
@@ -19,9 +19,9 @@ struct DuoSynergy {
     }
 }
 
-extension DuoSynergy: Hashable, Equatable {
+extension SynergyKey: Hashable, Equatable {
     
-    static func == (_ lhs: DuoSynergy, _ rhs: DuoSynergy) -> Bool {
+    static func == (_ lhs: SynergyKey, _ rhs: SynergyKey) -> Bool {
         return lhs.duoIdStrings == rhs.duoIdStrings
     }
 }
