@@ -10,13 +10,13 @@ public struct HealthStats {
     
     private var shield: Double = 0
     private var armour: Double = 0
-    private var rawHealth: Double = 0
+    private var baseHealth: Double = 0
     
     var effectiveHealth: Int {
         let components: [(amount: Double, value: Double)] = [
             (amount: shield, value: 1.2),
             (amount: armour, value: 1.1),
-            (amount: rawHealth, value: 1),
+            (amount: baseHealth, value: 1),
         ]
         
         let effectiveSum = components.reduce(0.0) { currentSum, component in
@@ -29,13 +29,13 @@ public struct HealthStats {
     internal init(_ health: Int, armour: Int = 0, shield: Int = 0) {
         self.shield = Double(shield)
         self.armour = Double(armour)
-        self.rawHealth = Double(health)
+        self.baseHealth = Double(health)
     }
 }
 
 extension HealthStats: ExpressibleByIntegerLiteral {
     
-    public init(integerLiteral rawHealth: Int) {
-        self.rawHealth = Double(rawHealth)
+    public init(integerLiteral baseHealth: Int) {
+        self.baseHealth = Double(baseHealth)
     }
 }

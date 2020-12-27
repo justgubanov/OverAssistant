@@ -10,7 +10,7 @@ public struct Scoring {
     private let player: Player
     private let allies: [Hero]
     private let enemies: [Hero]
-    private let requirements: SessionRequirements
+    private var requirements: SessionRequirements
     
     public let hero: Hero
     
@@ -18,54 +18,46 @@ public struct Scoring {
         hero = scoredHero
         allies = background.allies
         enemies = background.enemies
-        player = Self.createPlayer(with: background.targetProfile)
-        requirements = Self.makeSessionRequirements(for: background, player: player)
+        player = Player(profile: background.targetProfile)
+        
+        requirements = SessionRequirements(for: background.conditions)
+        adjust(&requirements, for: player)
     }
     
     public var result: PickScore {
         var score = PickScore()
+    
+// TODO: Reenable this after improving inner logic
+//        increaseScoreForHeroDPS(&score)
+//        increaseScoreForHeroHPS(&score)
+//        increaseScoreForHeroHealth(&score)
+//        increaseScoreForHeroTimeOnFire(&score)
         
-        increaseScoreForHeroDPS(&score)
-        increaseScoreForHeroHPS(&score)
-        increaseScoreForHeroHealth(&score)
-        increaseScoreForHeroTimeOnFire(&score)
-        
-        increaseScoreForHeroPreference(&score)
-        increaseScoreForHeroPlayStyle(&score)
-        increaseScoreForHeroRangeCoverage(&score)
-        increaseScoreForHeroUltimate(&score)
+//        increaseScoreForHeroPreference(&score)
+//        increaseScoreForHeroPlayStyle(&score)
+//        increaseScoreForHeroRangeCoverage(&score)
+//        increaseScoreForHeroUltimate(&score)
         
         increaseScoreForCountering(&score)
         increaseScoreForSynergy(&score)
         return score
     }
     
-    private static func createPlayer(with profile: Profile?) -> Player {
-        if let profile = profile {
-            return Player(profile: profile)
-        } else {
-            return .average
-        }
-    }
-    
-    private static func makeSessionRequirements(for background: ScoringBackground, player: Player) -> SessionRequirements {
-        var requirements = SessionRequirements(for: background.conditions)
-        
-        for hero in background.allies {
-            requirements.teamHealth -= hero.stats.effectiveHealth
-            requirements.teamDPS -= player.getDPS(on: hero)
-            requirements.teamHPS -= player.getHPS(on: hero)
-            requirements.ultimatesTags.remove(hero.getUltimateAbilityTags())
+    private func adjust(_ requirements: inout SessionRequirements, for player: Player) {
+        for ally in allies {
+            requirements.teamHealth -= ally.stats.effectiveHealth
+            requirements.teamDPS -= player.getDPS(on: ally)
+            requirements.teamHPS -= player.getHPS(on: ally)
+            requirements.ultimatesTags.remove(ally.getUltimateAbilityTags())
             
-            if let index = requirements.rangesList.firstIndex( where: { hero.isEffective(at: $0) } ) {
+            if let index = requirements.rangesList.firstIndex( where: { ally.isEffective(at: $0) } ) {
                 requirements.rangesList.remove(at: index)
             }
             
-            if let index = requirements.playstyleList.firstIndex( where: { $0 == hero.playstyle } ) {
+            if let index = requirements.playstyleList.firstIndex( where: { $0 == ally.playstyle } ) {
                 requirements.playstyleList.remove(at: index)
             }
         }
-        return requirements
     }
 }
     

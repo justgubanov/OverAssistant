@@ -16,7 +16,7 @@ class Player {
     
     fileprivate init() {}
     
-    init(profile: Profile) {
+    init(profile: Profile?) {
         self.profile = profile
     }
     
